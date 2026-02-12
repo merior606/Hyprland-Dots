@@ -10,6 +10,7 @@ export PATH=/usr/lib/openmpi/bin:$HOME/bin:$HOME/.local/bin:$HOME/.local/share:/
 
 export LD_LIBRARY_PATH=/usr/lib/openmpi/lib:$LD_LIBRARY_PATH
 
+export LIBVIRT_DEFAULT_URI="qemu:///system"
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 DISABLE_AUTO_TITLE="true"
@@ -140,6 +141,10 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="lsd"
 alias cat="bat"
+alias dots="code ~/dotfiles && cd ~/dotfiles"
+alias cdd="cd ~/Desktop"
+alias cht="./.config/cheat/cht.sh"
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

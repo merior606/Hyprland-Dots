@@ -13,7 +13,7 @@
 @define-color urgent #B05A5A;
 */
 
-@define-color background #2B2B2B; /* #2B2B2B;*/
+@define-color background #292929; /* #2B2B2B;*/
 @define-color second-background #3B3B3B;
 @define-color text #ffffff;
 @define-color borders #A0907A;  /*# */ 
@@ -52,22 +52,22 @@ window#waybar.empty #window {
 
 /* configuring the modules */
 .modules-left {
-    margin: 10px 0 0 10px;
-    padding: 0 0 0 7px;
+    margin: 5px 0 0 5px; /* arriba, alog, algo, izquierda */
+    padding: 0 0 0 5px;
     background-color: @background;
     border: 2px solid @focused;
     border-radius: 5px;
 }
 .modules-center {
-    margin: 10px 0 0 0;
-    padding: 0 10px 0 10px;
+    margin: 5px 0 0 0;
+    padding: 0 5px 0 5px;
     background-color: @background;
     border: 2px solid @focused;
     border-radius: 5px;
 }
 .modules-right {
-    margin: 10px 10px 0 0;
-    padding: 0 10px 0 10px;
+    margin: 5px 5px 0 0;
+    padding: 0 5px 0 5px;
     background-color: @background;
     border: 2px solid @focused;
     border-radius: 5px;

@@ -1,9 +1,9 @@
 [{
-    "height": 40,
-    "spacing": 5,  
-
     // "height": 40,
-    // "spacing": 5,
+    // "spacing": 5,  
+
+    "height": 35,
+    "spacing": 5,  
 
     "modules-left": [
         "group/Utilities",
@@ -51,9 +51,7 @@
 
     "custom/power": {
 	"format": "⏻",
-        //"on-click": "$HOME/.config/hypr/scripts/Wlogout.sh",
         "on-click": "wlogout",
-        //"on-click-right": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
         "tooltip": true,
         "tooltip-format": "Left Click: Logout Menu",
     },
@@ -222,8 +220,8 @@
         "scroll-step": 5.0,
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol",
-        "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
-        "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+        "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
+        "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
         "tooltip-format": "{icon} {desc} | {volume}%",
         "smooth-scrolling-threshold": 1,
     },
@@ -311,10 +309,10 @@
         "escape": true,
     },
     "custom/keyboard": {
-        "exec": "$HOME/.config/waybar/scripts/SwitchKeyboardLayout.sh --print",
+        "exec": "~/.config/waybar/scripts/SwitchKeyboardLayout.sh --print",
         "interval": 1,
         "format": "  {} ",
-        "on-click": "$HOME/.config/waybar/scripts/SwitchKeyboardLayout.sh --toggle",
+        "on-click": "~/.config/waybar/scripts/SwitchKeyboardLayout.sh --toggle",
         "tooltip": true,
         "tooltip-format": "{}",
     },
@@ -346,7 +344,7 @@
             "󰤯", "󰤟", "󰤢", "󰤨", "󰤨"
         ],
         "on-click": "kitty --class=nmtui -e nmtui",
-        "on-click-right": "$HOME/.config/waybar/scripts/routerconfiguration.sh"       
+        "on-click-right": "~/.config/waybar/scripts/routerconfiguration.sh"       
     },
 
     "bluetooth": {
