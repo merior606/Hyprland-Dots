@@ -4,21 +4,26 @@
   "positionX": "right",
   "positionY": "top",
   "layer": "overlay",
+  "control-center-layer": "top",
   "layer-shell": true,
-  "cssPriority": "application",
-  "control-center-margin-top": 5,
-  "control-center-margin-bottom": 5,
-  "control-center-margin-right": 5,
-  "control-center-margin-left": 5,
-  "control-center-layer": "overlay",
-  "control-center-exclusive-zone": true,
+  "layer-shell-cover-screen": true,
+  "cssPriority": "user",
+  "control-center-margin-top": 0,
+  "control-center-margin-bottom": 450,
+  "control-center-margin-right": 0,
+  "control-center-margin-left": 0,
   "notification-2fa-action": true,
-  "timeout": 5,
-  "timeout-low": 3,
-  "timeout-critical": 10,
-  "notification-window-width": 400,
-  "notification-window-height": 500,
-  "notification-window-preferred-output": "",
+  "notification-inline-replies": false,
+  "notification-body-image-height": 100,
+  "notification-body-image-width": 200,
+  "timeout": 10,
+  "timeout-low": 5,
+  "timeout-critical": 5,
+  "fit-to-screen": true,
+  "relative-timestamps": true,
+  "control-center-width": 400,
+  "control-center-height": 600,
+  "notification-window-width": 370,
   "keyboard-shortcuts": true,
   "notification-grouping": true,
   "image-visibility": "when-available",
@@ -26,34 +31,38 @@
   "hide-on-clear": false,
   "hide-on-action": true,
   "text-empty": "No Notifications",
-  "fit-to-screen": true,
-  "relative-timestamps": true,
-  "control-center-height": 500,
-  "control-center-width": 350,
-  "control-center-preferred-output": "",
-  "layer-shell-cover-screen": true,
-  "notification-inline-replies": false,
-  "notification-body-image-height": 100,
-  "notification-body-image-width": 200,
+  "script-fail-notify": true,
+  "scripts": {
+    "example-script": {
+      "exec": "echo 'Do something...'",
+      "urgency": "Normal"
+    },
+    "example-action-script": {
+      "exec": "echo 'Do something actionable!'",
+      "urgency": "Normal",
+      "run-on": "action"
+    }
+  },
   "notification-visibility": {
-    "Spotify": {
+    "example-name": {
       "state": "muted",
       "urgency": "Low",
-      "app-name": "Spotify",
-      "desktop-entry": "spotify.desktop"
+      "app-name": "Spotify"
     }
   },
   "widgets": [
+    "dnd",
     "buttons-grid",
     "volume",
     "backlight",
-    "mpris",
     "inhibitors",
     "title",
-    "notifications",
-    "dnd"
+    "notifications"
   ],
   "widget-config": {
+    "notifications": {
+      "vexpand": true
+    },
     "inhibitors": {
       "text": "Inhibitors",
       "button-text": "Clear All",
@@ -62,7 +71,7 @@
     "title": {
       "text": "Notifications",
       "clear-all-button": true,
-      "button-text": " Clear All"
+      "button-text": "Clear All"
     },
     "dnd": {
       "text": "Do Not Disturb"
@@ -73,82 +82,12 @@
     },
     "mpris": {
       "blacklist": [],
-      "autohide": true,
+      "autohide": false,
       "show-album-art": "always",
       "loop-carousel": false
     },
-    "buttons-grid": {
-      "buttons-per-row": 3,
-      "actions": [
-        {
-          "label": "",
-          "type": "toggle",
-          "active": true,
-          "command": "sh -c '~/.config/swaync/scripts/toggle_wifi.sh'",
-          "update-command": "sh -c 'set +e;[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
-        },
-        {
-          "label": "󰂯",
-          "type": "toggle",
-          "active": true,
-          "command": "sh -c '~/.config/swaync/scripts/toggle_bluetooth.sh'",
-          "update-command": "sh -c 'set +e;bluetoothctl show | grep -qF Powered:\\ yes && echo true || echo false'"
-        },
-        {
-          "label": "󰀝",
-          "type": "toggle",
-          "active": true,
-          "command": "sh -c '~/.config/swaync/scripts/toggle_airplanemode.sh'",
-          "update-command": "sh -c 'set +e;[[ $(nmcli radio wifi) == \"enabled\" ]] || bluetoothctl show | grep -qF Powered:\\ yes && echo false || echo true'"
-        },
-
-        {
-          "label": "",
-          "type": "toggle",
-          "active": true,
-          "command": "swayosd-client --output-volume mute-toggle",
-          "update-command": "sh -c 'set +e;pactl get-sink-mute @DEFAULT_SINK@ | grep -q \"no\" && echo true || echo false'"
-        },
-        {
-          "label": "",
-          "type": "toggle",
-          "active": true,
-          "command": "swayosd-client --input-volume mute-toggle;pactl set-source-volume @DEFAULT_SOURCE@ 25%",
-          "update-command": "sh -c 'set +e;pactl get-source-mute @DEFAULT_SOURCE@ | grep -q \"no\" && echo true || echo false'"
-        },
-
-        {
-          "label": "",
-          "type": "toggle",
-          "active": true,
-          "command": "sh -c 'swaync-client -d -sw'",
-          "update-command": "sh -c 'set +e;swaync-client -D'"
-        },
-        {
-          "label": "",
-          "type": "toggle",
-          "active": true,
-          "command": "sh -c '~/.config/swaync/scripts/toggle_darkmode.sh'",
-          "update-command": "sh -c 'set +e;grep -q '^post_command.*dark' ~/.config/waypaper/config.ini && echo true || echo false'"
-        },
-        {
-          "label": "",
-          "type": "toggle",
-          "active": true,
-          "command": "sh -c '~/.config/swaync/scripts/toggle_hyprsunset.sh'",
-          "update-command": "sh -c 'set +e;pgrep -x hyprsunset >/dev/null && echo true || echo false'"
-        },
-        {
-          "label": "",
-          "type": "toggle",
-          "active": true,
-          "command": "sh -c '~/.config/swaync/scripts/toggle_hypridle.sh'",
-          "update-command": "sh -c '~/.config/swaync/scripts/update_hypridle.sh'"
-        }
-      ]
-    },
-    "volume": {
-      "label": "",
+     "volume": {
+      "label": "󰕾",
       "show-per-app-icon": true,
       "show-per-app": true
     },
@@ -157,15 +96,58 @@
       "device": "intel_backlight",
       "subsystem": "backlight",
       "min": 5
-    }
-  },
-  "script-fail-notify": false,
+    },
+    "buttons-grid": {
+    "buttons-per-row": 4,
+    "actions": [
+        {
+          "label": "󰍁",
+          "type": "command",
+          "command": "hyprlock"
+        },
+        {
+          "label": "󰗼",
+          "type": "command",
+          "command": "hyprctl dispatch exit"
+        },
+        {
+          "label": "󰜉",
+          "type": "command",
+          "command": "systemctl reboot"
+        },
+        {
+          "label": "󰐥",
+          "type": "command",
+          "command": "systemctl poweroff"
+        },
 
-  "scripts": {
-    "play-sound": {
-      "exec": "~/.config/swaync/scripts/notify_sound.sh",
-      "app-name": ".*",
-      "run-on": "receive"
+        {
+          "label": "󰤥",
+          "type": "toggle",
+          "active": true,
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
+          "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
+        },
+        {
+          "label": "󰂯",
+          "type": "toggle",
+          "active": true,
+          "command": "sh -c 'if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then bluetoothctl power on; else bluetoothctl power off; fi'",
+          "update-command": "bluetoothctl show | grep -q 'Powered: yes' && echo true || echo false"
+        },
+        {
+          "label": "",
+          "type": "toggle",
+          "command": "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then hyprctl dispatch exec 'hyprsunset --temperature 6000'; else pkill -INT hyprsunset; fi",
+          "update-command": "pgrep -x hyprsunset >/dev/null && echo true || echo false"
+        },
+        {
+          "label": "",
+          "type": "toggle",
+          "command": "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then hyprctl dispatch exec hypridle; else pkill -TERM hypridle; fi",
+          "update-command": "pgrep -x hypridle >/dev/null && echo true || echo false"
+        }
+      ]
     }
   }
 }

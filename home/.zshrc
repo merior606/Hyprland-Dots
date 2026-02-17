@@ -143,8 +143,8 @@ alias ls="lsd"
 alias cat="bat"
 alias dots="code ~/dotfiles && cd ~/dotfiles"
 alias cdd="cd ~/Desktop"
-alias cht="./.config/cheat/cht.sh"
-
+alias cht="~/.config/cheat/cht.sh"
+alias codeipynb="code --enable-proposed-api ms-toolsai.jupyter --enable-proposed-api ms-python.python ."
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
