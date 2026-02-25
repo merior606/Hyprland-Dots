@@ -272,13 +272,14 @@
         "format-charging": " {capacity}%",
         "format-plugged": "  {capacity}%",
         "format-icons": ["", "", "", "", ""],
+        "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+        "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
         "on-click": "wlogout",
         "interval": 10
     },
     "custom/battery_notify": {
         "exec": "~/.config/waybar/scripts/bateria_notify.sh",
-        "interval": 30,
-        "return-type": "json"
+        "interval": 30
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -336,10 +337,10 @@
         "format-disconnected": "",
         "tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
         "format-linked": "󰈁 {ifname} (No IP)",
-        "tooltip-format-wifi": "{ifname} {essid} {signalStrength}%",
-        "tooltip-format-ethernet": "{ifname} 󰌘",
         "tooltip-format-disconnected": "󰌙 Disconnected",
         "max-length": 30,
+        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "format-icons": [
             "󰤯", "󰤟", "󰤢", "󰤨", "󰤨"
         ],
