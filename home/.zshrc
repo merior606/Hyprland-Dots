@@ -21,8 +21,8 @@ if [[ -n $SSH_CONNECTION ]]; then
   export VISUAL='vim'
   export IS_SSH=1
 else
-  export EDITOR='code -n -w'
-  export VISUAL='code -n -w'
+  export EDITOR='code'
+  export VISUAL='code'
   export IS_SSH=0
 fi
 
