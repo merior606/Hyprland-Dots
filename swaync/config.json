@@ -138,13 +138,13 @@
         {
           "label": "",
           "type": "toggle",
-          "command": "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then hyprctl dispatch exec 'hyprsunset --temperature 6000'; else pkill -INT hyprsunset; fi",
+          "command": "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then hyprctl dispatch exec 'hyprsunset --temperature 4800'; else pkill -INT hyprsunset; fi",
           "update-command": "pgrep -x hyprsunset >/dev/null && echo true || echo false"
         },
         {
-          "label": "",
+          "label": "",
           "type": "toggle",
-          "command": "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then hyprctl dispatch exec hypridle; else pkill -TERM hypridle; fi",
+          "command": "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then bash -c hyprpicker; else pkill -TERM hyprpicker; fi",
           "update-command": "pgrep -x hypridle >/dev/null && echo true || echo false"
         }
       ]

@@ -159,13 +159,13 @@
         "format": "CPU:{usage}%",
         "tooltip": false,
         "interval": 2,
-        "on-click": "kitty -e btop",
+        "on-click": "$TERMINAL -e btop",
     },
     "memory":{
         "format": "RAM:{}%",
         "tooltip": false,
         "interval": 2,
-        "on-click": "kitty -e btop",
+        "on-click": "$TERMINAL -e btop",
     },
 
     "group/brightvol": {
@@ -194,7 +194,7 @@
             "default": [" :", " :", " :"]
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol"
+        "on-click-right": "$TERMINAL -e wiremix"
     },
 
     "pulseaudio": {
@@ -219,7 +219,7 @@
         },
         "scroll-step": 5.0,
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol",
+        "on-click-right": "$TERMINAL -e wiremix",
         "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
         "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
         "tooltip-format": "{icon} {desc} | {volume}%",
@@ -279,7 +279,8 @@
     },
     "custom/battery_notify": {
         "exec": "~/.config/waybar/scripts/bateria_notify.sh",
-        "interval": 30
+        "interval": 30,
+        "return-type": "none"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -333,14 +334,14 @@
     "network": {
         "format": "{ifname}",
         "format-wifi": "{icon} {ipaddr}",
-        "format-ethernet": "󰈀",
+        "format-ethernet": "󰈀 {ipaddr}",
         "format-disconnected": "",
         "tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
         "format-linked": "󰈁 {ifname} (No IP)",
         "tooltip-format-disconnected": "󰌙 Disconnected",
         "max-length": 30,
-        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-        "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-wifi": "gw: {essid} {gwaddr} ({frequency} GHz) \nif: {ifname} ⇣{bandwidthDownBits}  ⇡{bandwidthUpBits}",
+        "tooltip-format-ethernet": "gw: {essid} {gwaddr} ({frequency} GHz) \nif: {ifname} ⇣{bandwidthDownBits}  ⇡{bandwidthUpBits}",
         "format-icons": [
             "󰤯", "󰤟", "󰤢", "󰤨", "󰤨"
         ],
@@ -360,13 +361,13 @@
     },
     "network#vpn": {
         "interface": "tun0",
-        "format": "󱂇 {ipaddr}",
-        "format-wifi": "󱂇 {ipaddr}",
-        "format-ethernet": "󱂇 {ipaddr}",
+        "format": "󰒍 {ipaddr}",
+        "format-wifi": "󰒍 {ipaddr}",
+        "format-ethernet": "󰒍 {ipaddr}",
         "format-disconnected": "", //An empty format will hide the module.
         "tooltip-format": "{ifname} {essid} {gwaddr} ({signalStrength}%) ",
-        "tooltip-format-wifi": "{ifname} {essid} {gwaddr} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} {essid} {gwaddr} ({signalStrength}%) ",
+        "tooltip-format-wifi": "gw: {essid} {gwaddr} ({frequency} GHz) \nif: {ifname} ⇣{bandwidthDownBits}  ⇡{bandwidthUpBits}",
+        "tooltip-format-ethernet": "gw: {essid} {gwaddr} ({frequency} GHz) \nif: {ifname} ⇣{bandwidthDownBits}  ⇡{bandwidthUpBits}",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 50
     },

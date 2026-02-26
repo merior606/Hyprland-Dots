@@ -29,12 +29,22 @@ fi
 # -------------------------
 # Aliases
 # -------------------------
-alias ls="lsd"
-alias cat="bat"
-alias dots="code ~/dotfiles && cd ~/dotfiles"
-alias cdd="cd ~/Desktop"
-alias cht="~/.config/cheat/cht.sh"
+alias cat="bat"     # Reemplazo básico de cat
+
+alias ls='lsd'      # Reemplazo básico de ls
+alias ll='lsd -lh'  # Vista larga con iconos y detalles
+alias la='lsd -lha' # Todo, incluyendo ocultos
+alias lt='lsd --tree --depth=2'   # Vista en árbol (2 niveles)
+alias ltt='lsd --tree --depth=3'   # Vista en árbol (2 niveles)
+
+alias dots="code ~/Hyprland-Dots && cd ~/Hyprland-Dots"
+alias cht="/usr/local/bin/cht.sh"
 alias codeipynb="code --enable-proposed-api ms-toolsai.jupyter --enable-proposed-api ms-python.python ."
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 
 # -------------------------
 # Completion System
@@ -66,6 +76,20 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats ' (%b)'
 setopt prompt_subst
+
+# -------------------------
+# Comands History
+# -------------------------
+HISTFILE="$HOME/.zsh_history" # Archivo del historial
+HISTSIZE=10000            # Cantidad de comandos en memoria
+SAVEHIST=10000            # Cantidad de comandos guardados en archivo
+setopt EXTENDED_HISTORY   # Formato con timestamp (como el que copiaste)
+setopt INC_APPEND_HISTORY # Guardar inmediatamente
+setopt APPEND_HISTORY     # No sobreescribir, sino agregar
+setopt SHARE_HISTORY      # Compartir entre terminales abiertas
+setopt HIST_IGNORE_DUPS   # No guardar duplicados consecutivos
+setopt HIST_IGNORE_SPACE      # No guardar comandos que empiecen con espacio
+setopt HIST_EXPIRE_DUPS_FIRST     # Eliminar duplicados antiguos automáticamente
 
 # -------------------------
 # Sudo plugin

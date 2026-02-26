@@ -1,7 +1,10 @@
 #!/bin/bash
 
-BAT="/sys/class/power_supply/BAT0/capacity"
-STATUS="/sys/class/power_supply/BAT0/status"
+BAT="/sys/class/power_supply/BAT1/capacity"
+STATUS="/sys/class/power_supply/BAT1/status"
+
+# BAT="/sys/class/power_supply/BAT0/capacity"
+# STATUS="/sys/class/power_supply/BAT0/status"
 
 LEVEL=$(cat "$BAT")
 STATE=$(cat "$STATUS")
@@ -18,3 +21,5 @@ if [ "$STATE" = "Discharging" ] && [ "$LEVEL" -le 5 ]; then
 else
     rm -f "$FLAG"
 fi
+
+exit 0
