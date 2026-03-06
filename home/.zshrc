@@ -39,7 +39,7 @@ alias ltt='lsd --tree --depth=3'   # Vista en árbol (2 niveles)
 
 alias dots="code ~/Hyprland-Dots && cd ~/Hyprland-Dots"
 alias cht="/usr/local/bin/cht.sh"
-alias codeipynb="code --enable-proposed-api ms-toolsai.jupyter --enable-proposed-api ms-python.python ."
+alias codeipynb="code --enable-proposed-api ms-toolsai.jupyter --enable-proposed-api ms-python.python"
 
 alias ..='cd ..'
 alias ...='cd ../..'

@@ -13,7 +13,6 @@ sudo pacman -S --needed --noconfirm \
   pipewire pipewire-pulse wireplumber \
   xdg-desktop-portal-hyprland btop \
   yazi vpnc fastfetch satty code wiremix\
-  networkmanager-vpn-plugin-vpnc networkmanager-vpnc \
   grub-btrfs xdg-desktop-portal xdg-desktop-portal-hyprland hyprpolkitagent 
 
 

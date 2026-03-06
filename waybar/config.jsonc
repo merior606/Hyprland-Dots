@@ -159,13 +159,13 @@
         "format": "CPU:{usage}%",
         "tooltip": false,
         "interval": 2,
-        "on-click": "$TERMINAL -e btop",
+        "on-click": "kitty -e btop",
     },
     "memory":{
         "format": "RAM:{}%",
         "tooltip": false,
         "interval": 2,
-        "on-click": "$TERMINAL -e btop",
+        "on-click": "kitty -e btop",
     },
 
     "group/brightvol": {
@@ -194,7 +194,7 @@
             "default": [" :", " :", " :"]
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "$TERMINAL -e wiremix"
+        "on-click-right": "kitty -e wiremix"
     },
 
     "pulseaudio": {
@@ -219,7 +219,7 @@
         },
         "scroll-step": 5.0,
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "$TERMINAL -e wiremix",
+        "on-click-right": "kitty -e wiremix",
         "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
         "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
         "tooltip-format": "{icon} {desc} | {volume}%",
