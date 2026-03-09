@@ -41,10 +41,20 @@ alias dots="code ~/Hyprland-Dots && cd ~/Hyprland-Dots"
 alias cht="/usr/local/bin/cht.sh"
 alias codeipynb="code --enable-proposed-api ms-toolsai.jupyter --enable-proposed-api ms-python.python"
 
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
+# Función para interpretar cd ..., cd ...., etc.
+cd() {
+  case "$1" in
+    ...) builtin cd ../.. ;;
+    ....) builtin cd ../../.. ;;
+    .....) builtin cd ../../../.. ;;
+    ......) builtin cd ../../../../.. ;;
+    *) builtin cd "$@" ;;
+  esac
+}
+
+# Forma fácil de acceder a Desktop
+cdpath=(. ~ ~/Desktop)
+alias cdd='cd ~/Desktop'
 
 # -------------------------
 # Completion System
