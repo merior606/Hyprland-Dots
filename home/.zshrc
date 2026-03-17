@@ -16,6 +16,8 @@ export TERMINAL=kitty
 # -------------------------
 # Editor
 # -------------------------
+export EDITOR='vim'
+
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
   export VISUAL='vim'

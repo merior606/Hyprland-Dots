@@ -13,7 +13,7 @@
 @define-color urgent #B05A5A;
 */
 
-@define-color background #242424; /* #2B2B2B;#292929*/
+@define-color background #292929; /* #2B2B2B;*/
 @define-color second-background #3B3B3B;
 @define-color text #ffffff;
 @define-color borders #A0907A;  /*# */ 
@@ -36,7 +36,7 @@
 }
 
 /* idk what all this does */
-/* window#waybar {
+window#waybar {
     background-color: transparent;
     border-bottom: 0;
     color: @text;
@@ -47,37 +47,32 @@ window#waybar.hidden {
 }
 window#waybar.empty #window {
     background-color: transparent;
-} */
-
-
-/* 1. Configuramos la barra principal como una sola unidad */
-window#waybar {
-    background-color: @background;
-    border: 0px solid @focused;
-    border-radius: 0px;
-    
-    
 }
 
-/* 2. Quitamos el estilo individual de los grupos de módulos */
-.modules-left,
-.modules-center,
-.modules-right {
-    background-color: transparent; 
-    border: none;                  
-    border-radius: 0;  
-    
-}
 
-/*arriba derecha abajo izquierda */
-/* 3. Ajustamos el espaciado interno si es necesario */
+/* configuring the modules */
 .modules-left {
-    padding: 2px 5px 2px 5px; 
+    margin: 5px 0 0 5px; /* arriba, alog, algo, izquierda */
+    padding: 0 0 0 5px;
+    background-color: @background;
+    border: 2px solid @focused;
+    border-radius: 5px;
+}
+.modules-center {
+    margin: 5px 0 0 0;
+    padding: 0 5px 0 5px;
+    background-color: @background;
+    border: 2px solid @focused;
+    border-radius: 5px;
+}
+.modules-right {
+    margin: 5px 5px 0 0;
+    padding: 0 5px 0 5px;
+    background-color: @background;
+    border: 2px solid @focused;
+    border-radius: 5px;
 }
 
-.modules-right {
-    padding: 2px 5px 2px 5px;
-}
 
 /* whats this?? */
 button {

@@ -258,10 +258,8 @@
         ]
     },
     "clock": {
-        // "format": "{:%H:%M %a%e %b}", // 24H 
-        "format": "{:%H:%M - %d/%m}",
-        "format-alt": "{:%d/%m/%Y}",
-        // "format-alt": "{:%a%e %b}", //
+        "format": "{:%H:%M}", // 24H 
+        "format-alt": "{:%a%e %b}", //
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "onclick" : "kalender",
         "on-click-right": "~/.config/waybar/scripts/timer.sh"

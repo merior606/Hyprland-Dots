@@ -39,8 +39,20 @@ LOCAL_GID=$(id -g "$USUARIO_LOCAL")
 HOME_LOCAL=$(getent passwd "$USUARIO_LOCAL" | cut -d: -f6)
 PUNTO_MONTAJE="${HOME_LOCAL}/W"
 
-echo ">> Instalando paquetes necesarios a través de pacman..."
-pacman -S --needed networkmanager networkmanager-vpnc vpnc cifs-utils
+# Detección de distribución e instalación de paquetes
+
+echo ">> Comprobando el gestor de paquetes del sistema..."
+if command -v apt-get &> /dev/null; then
+  echo ">> Sistema basado en Debian detectado. Instalando paquetes con apt-get..."
+  apt-get update
+  apt-get install -y network-manager network-manager-vpnc vpnc cifs-utils
+elif command -v pacman &> /dev/null; then
+  echo ">> Sistema basado en Arch detectado. Instalando paquetes con pacman..."
+  pacman -S --needed --noconfirm networkmanager networkmanager-vpnc vpnc cifs-utils
+else
+  echo "Error: Gestor de paquetes no soportado. Este script requiere apt-get o pacman."
+  exit 1
+fi
 
 echo ">> Creando archivo /etc/NetworkManager/system-connections/UPVNET.nmconnection... "
 cat <<EOF > /etc/NetworkManager/system-connections/UPVNET.nmconnection
