@@ -75,19 +75,17 @@ yay -S --noconfirm zsh-theme-powerlevel10k-git wlogout
 sudo chsh -s /usr/bin/zsh $USER
 
 # 10. Configurar Dotfiles (Asegúrate de tener la carpeta ~/Hyprland-Dots)
-if [ -d "~/Hyprland-Dots" ]; then
-    rm -rf ~/.config/hypr ~/.config/kitty ~/.config/waybar ~/.config/wofi ~/.config/swaync
+
+rm -rf ~/.config/hypr ~/.config/kitty ~/.config/waybar ~/.config/wofi ~/.config/swaync
     
-    ln -sf ~/Hyprland-Dots/hypr ~/.config/
-    ln -sf ~/Hyprland-Dots/waybar ~/.config/
-    ln -sf ~/Hyprland-Dots/kitty ~/.config/
-    ln -sf ~/Hyprland-Dots/wofi ~/.config/
-    ln -sf ~/Hyprland-Dots/swaync ~/.config/
-    ln -sf ~/Hyprland-Dots/home/.zshrc ~/.zshrc
-    ln -sf ~/Hyprland-Dots/home/.p10k.zsh ~/.p10k.zsh
-else
-    echo "Advertencia: ~/Hyprland-Dots no existe. No se crearon los enlaces simbólicos."
-fi
+ln -sf ~/Hyprland-Dots/hypr ~/.config/
+ln -sf ~/Hyprland-Dots/waybar ~/.config/
+ln -sf ~/Hyprland-Dots/kitty ~/.config/
+ln -sf ~/Hyprland-Dots/wofi ~/.config/
+ln -sf ~/Hyprland-Dots/swaync ~/.config/
+ln -sf ~/Hyprland-Dots/home/.zshrc ~/.zshrc
+ln -sf ~/Hyprland-Dots/home/.p10k.zsh ~/.p10k.zsh
+
 
 # 11. Cheat.sh CLI
 curl -s https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh > /dev/null
