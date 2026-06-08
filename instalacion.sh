@@ -1,46 +1,48 @@
 #!/bin/bash
+set -e # Detiene el script si ocurre algún error crítico
+
 cd ~
 
-# Paquetes base
-sudo pacman -Syu
+# 1. Actualizar sistema
+sudo pacman -Syu --noconfirm
 
+# 2. Instalar paquetes base (Corregido y sin duplicados)
 sudo pacman -S --needed --noconfirm \
   hyprland kitty waybar wofi zsh hyprpaper swaync go \
-  git base-devel lsd bat xdg-user-dirs hyprpicker hyprsunset wget curl\
+  git base-devel lsd bat xdg-user-dirs hyprpicker hyprsunset wget curl \
   zsh-autosuggestions zsh-syntax-highlighting \
-  networkmanager network-manager-applet \
-  ttf-jetbrains-mono-nerd ttf-iosevka-nerd noto-fonts-cjk\
-  pipewire pipewire-pulse wireplumber docker 7zip unzip\ 
-  xdg-desktop-portal-hyprland btop tuned dolphin qbittorrent mpv\
-  yazi vpnc fastfetch satty code wiremix brightnessctl firefox vim nano\
-  grub-btrfs xdg-desktop-portal xdg-desktop-portal-hyprland hyprpolkitagent nwg-look \
-  docker-compose
+  networkmanager network-manager-applet ttf-hack-nerd\
+  ttf-jetbrains-mono-nerd ttf-iosevka-nerd noto-fonts-cjk \
+  pipewire pipewire-pulse wireplumber docker 7zip unzip \
+  xdg-desktop-portal-hyprland btop tuned dolphin qbittorrent mpv \
+  yazi fastfetch satty code brightnessctl firefox vim nano \
+  grub-btrfs xdg-desktop-portal hyprpolkitagent nwg-look \
+  docker-compose resolvconf  nvtop bat-extras
 
 
-sudo systemctl enable -now NetworkManager
+# Paquetes opcionales para mi
+# sudo pacman -S --needed --noconfirm \
+#   syncthing wireguard-tools vpnc
+
+# 3. Habilitar servicios y configurar grupos
+sudo systemctl enable --now NetworkManager
 sudo systemctl enable --now tuned.service
-sudo usermod -aG docker $USER
-sudo usermod -aG video mario $USER
 sudo systemctl enable --now docker 
 
+sudo usermod -aG docker $USER
+sudo usermod -aG video $USER
 
-# Configuración Automática de grub-btrfs para Timeshift
-
-sudo sed -i 's|ExecStart=*|ExecStart=/usr/bin/grub-btrfsd --syslog --timeshift-auto|' /usr/lib/systemd/system/grub-btrfsd.service
-
+# 4. Configuración Automática de grub-btrfs para Timeshift (Corregido el SED)
+sudo sed -i 's|ExecStart=.*|ExecStart=/usr/bin/grub-btrfsd --syslog --timeshift-auto|' /usr/lib/systemd/system/grub-btrfsd.service
 sudo systemctl enable --now grub-btrfsd.service
-
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-
-
-
-# Pacman hook update configuracion de grub.
+# 5. Pacman hook para actualización de GRUB
 if [ ! -d "/etc/pacman.d/hooks" ]; then
-    mkdir -p "/etc/pacman.d/hooks"
+    sudo mkdir -p "/etc/pacman.d/hooks"
 fi
 
-cat <<EOF > "/etc/pacman.d/hooks/grub-update.hook"
+cat <<EOF | sudo tee /etc/pacman.d/hooks/grub-update.hook > /dev/null
 [Trigger]
 Type = Package
 Operation = Install
@@ -54,39 +56,41 @@ When = PostTransaction
 Exec = /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
-
-
-# Crear carpetas XDG
-# xdg-user-dirs-update
+# 6. Crear carpetas XDG
 LC_ALL=C xdg-user-dirs-update --force
 
-# Instalar yay
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-cd ~
+# 7. Instalar AUR helper (yay)
+if ! command -v yay &> /dev/null; then
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si --noconfirm
+    cd ~
+    rm -rf ~/yay
+fi
 
-# Fuentes
-yay -S --noconfirm zsh-theme-powerlevel10k-git \ 
-  noto-fonts-cjk \
-  wlogout 
+# 8. Instalar paquetes de AUR
+yay -S --noconfirm zsh-theme-powerlevel10k-git wlogout
 
-# Cambiar shell
-chsh -s /usr/bin/zsh
+# 9. Cambiar shell a ZSH
+sudo chsh -s /usr/bin/zsh $USER
 
-# Backup existing configs (optional but recommended)
-rm -rf ~/.config/hypr
-rm -rf ~/.config/kitty
+# 10. Configurar Dotfiles (Asegúrate de tener la carpeta ~/Hyprland-Dots)
+if [ -d "~/Hyprland-Dots" ]; then
+    rm -rf ~/.config/hypr ~/.config/kitty ~/.config/waybar ~/.config/wofi ~/.config/swaync
+    
+    ln -sf ~/Hyprland-Dots/hypr ~/.config/
+    ln -sf ~/Hyprland-Dots/waybar ~/.config/
+    ln -sf ~/Hyprland-Dots/kitty ~/.config/
+    ln -sf ~/Hyprland-Dots/wofi ~/.config/
+    ln -sf ~/Hyprland-Dots/swaync ~/.config/
+    ln -sf ~/Hyprland-Dots/home/.zshrc ~/.zshrc
+    ln -sf ~/Hyprland-Dots/home/.p10k.zsh ~/.p10k.zsh
+else
+    echo "Advertencia: ~/Hyprland-Dots no existe. No se crearon los enlaces simbólicos."
+fi
 
-# Create symlinks
-ln -sf ~/Hyprland-Dots/hypr ~/.config
-ln -sf ~/Hyprland-Dots/waybar ~/.config
-ln -sf ~/Hyprland-Dots/kitty ~/.config
-ln -sf ~/Hyprland-Dots/wofi ~/.config
-ln -sf ~/Hyprland-Dots/swaync ~/.config
+# 11. Cheat.sh CLI
+curl -s https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh > /dev/null
+sudo chmod +x /usr/local/bin/cht.sh
 
-# Link shell configuration
-ln -sf ~/Hyprland-Dots/home/.zshrc ~/.zshrc
-ln -sf ~/Hyprland-Dots/home/.p10k.zsh ~/.p10k.zsh
-
-curl -s https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh && sudo chmod +x /usr/local/bin/cht.sh
+echo "¡Instalación completada con éxito! Reinicia para aplicar todos los cambios."

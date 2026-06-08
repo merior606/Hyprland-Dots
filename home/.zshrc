@@ -38,6 +38,7 @@ alias ll='lsd -lh'  # Vista larga con iconos y detalles
 alias la='lsd -lha' # Todo, incluyendo ocultos
 alias lt='lsd --tree --depth=2'   # Vista en árbol (2 niveles)
 alias ltt='lsd --tree --depth=3'   # Vista en árbol (2 niveles)
+alias man='batman'
 
 alias dots="code ~/Hyprland-Dots && cd ~/Hyprland-Dots"
 alias cht="/usr/local/bin/cht.sh"

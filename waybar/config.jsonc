@@ -246,6 +246,7 @@
             "custom/keyboard",
             "custom/split",
             "clock",
+            "custom/timer",
             "custom/split",
             //"network",
             "pulseaudio",
@@ -258,14 +259,21 @@
         ]
     },
     "clock": {
-        // "format": "{:%H:%M %a%e %b}", // 24H 
         "format": "{:%H:%M - %d/%m}",
-        "format-alt": "{:%d/%m/%Y}",
-        // "format-alt": "{:%a%e %b}", //
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "onclick" : "kalender",
-        "on-click-right": "~/.config/waybar/scripts/timer.sh"
+        // Al hacer click, ejecuta la acción "toggle" del script
+        "on-click": "~/.config/waybar/scripts/timer.sh toggle"
     },
+
+    "custom/timer": {
+        "exec": "~/.config/waybar/scripts/timer.sh",
+        "interval": 1, // Se actualiza cada segundo para el temporizador
+        "return-type": "",
+        "signal": 10,  // Responde instantáneamente al click gracias a pkill -RTMIN+10
+        // También puedes hacer click directamente en el temporizador para apagarlo
+        "on-click": "~/.config/waybar/scripts/timer.sh toggle" 
+    },
+
     "custom/clipboard": {
         "format": "",
         "tooltip": false,
