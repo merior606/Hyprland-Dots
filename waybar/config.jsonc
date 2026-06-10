@@ -273,8 +273,7 @@
         "exec": "~/.config/waybar/scripts/timer.sh",
         "interval": 1, // Se actualiza cada segundo para el temporizador
         "return-type": "",
-        "signal": 10,  // Responde instantáneamente al click gracias a pkill -RTMIN+10
-        // También puedes hacer click directamente en el temporizador para apagarlo
+        "signal": 10,  
         "on-click": "~/.config/waybar/scripts/timer.sh toggle" 
     },
 
@@ -284,7 +283,6 @@
         "on-click": "~/.config/waybar/scripts/clipboard_menu.sh"
     },
     "battery": {
-        "bat": "all", // suma BAT0 y BAT1 en una sola
         "states": {
             "warning": 15,
             "critical": 5

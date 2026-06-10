@@ -357,14 +357,14 @@
     },
 
     "bluetooth": {
-        "format": " ",
+        "format": "Right Click: Launch blueman-manager",
         "format-disabled": "󰂳 ",
         "format-connected": "󰂱 ",
         "tooltip-format": " {device_alias}",
         "tooltip-format-connected": "{device_enumerate}",
         "tooltip-format-enumerate-connected": " {device_alias} 󰂄{device_battery_percentage}%",
         "tooltip": true,
-        "on-click": "blueman-manager"
+        "on-right-click": "blueman-manager"
     },
     "network#vpn": {
         "interface": "tun0",

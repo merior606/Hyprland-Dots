@@ -163,6 +163,7 @@ button {
   padding: 0 10px ;
 }
 #clock:hover,
+#custom-timer:hover
 #cpu:hover,
 #memory:hover,
 #power-profiles-daemon:hover,
