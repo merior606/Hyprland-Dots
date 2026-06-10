@@ -46,21 +46,26 @@
             "custom/closebracket"
         ]
     },
-
-    "group/power": {
-        "orientation": "horizontal",
-        "modules": [
-            "custom/openbracket",
-            "custom/power",
-            "custom/closebracket"
-        ]
-    },
-
     "custom/power": {
-	"format": "⏻",
-        "on-click": "wlogout",
         "tooltip": true,
-        "tooltip-format": "Left Click: Logout Menu",
+        "tooltip-format": "Left Click: Launch Control Center\nRight Click: Do not Disturb",
+        "format": " {icon} ",
+        "format-icons": {
+            "notification": "󰍃<span foreground='red'><sup></sup></span>",
+            "none": "󰍃",
+            "dnd-notification": "X󰍃<span foreground='red'><sup></sup></span>",
+            "dnd-none": "X󰍃",
+            "inhibited-notification": "󰍃<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "󰍃",
+            "dnd-inhibited-notification": "X󰍃<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": "X󰍃"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1 && swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true,
     },
 
     "custom/arch": {
@@ -242,7 +247,7 @@
         "orientation": "horizontal",
         "modules": [
             "custom/openbracket",
-            "custom/swaync",
+            // "custom/swaync",
             "custom/keyboard",
             "custom/split",
             "clock",
@@ -252,9 +257,9 @@
             "pulseaudio",
             "bluetooth",
             //"custom/clipboard",
-            "power-profiles-daemon",
+            //"power-profiles-daemon",
             "battery",
-            "custom/battery_notify",
+            "custom/power",
             "custom/closebracket"
         ]
     },
@@ -264,7 +269,6 @@
         // Al hacer click, ejecuta la acción "toggle" del script
         "on-click": "~/.config/waybar/scripts/timer.sh toggle"
     },
-
     "custom/timer": {
         "exec": "~/.config/waybar/scripts/timer.sh",
         "interval": 1, // Se actualiza cada segundo para el temporizador
@@ -280,6 +284,7 @@
         "on-click": "~/.config/waybar/scripts/clipboard_menu.sh"
     },
     "battery": {
+        "bat": "all", // suma BAT0 y BAT1 en una sola
         "states": {
             "warning": 15,
             "critical": 5
@@ -287,17 +292,12 @@
         "format": "{icon} {capacity}%",
         "format-full": "{icon} {capacity}%",
         "format-charging": " {capacity}%",
-        "format-plugged": "  {capacity}%",
+        "format-plugged": " {capacity}%",
         "format-icons": ["", "", "", "", ""],
         "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
         "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-        "on-click": "wlogout",
-        "interval": 10
-    },
-    "custom/battery_notify": {
-        "exec": "~/.config/waybar/scripts/bateria_notify.sh",
-        "interval": 30,
-        "return-type": "none"
+        "interval": 10,
+        "max-length": 25
     },
     "idle_inhibitor": {
         "format": "{icon}",

@@ -17,7 +17,7 @@ sudo pacman -S --needed --noconfirm \
   xdg-desktop-portal-hyprland btop tuned dolphin qbittorrent mpv \
   yazi fastfetch satty code brightnessctl firefox vim nano \
   grub-btrfs xdg-desktop-portal hyprpolkitagent nwg-look \
-  docker-compose resolvconf  nvtop bat-extras
+  docker-compose resolvconf nvtop bat-extras obsidian bluez bluez-utils blueman \
 
 
 # Paquetes opcionales para mi

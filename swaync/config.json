@@ -32,29 +32,11 @@
   "hide-on-action": true,
   "text-empty": "No Notifications",
   "script-fail-notify": true,
-  "scripts": {
-    "example-script": {
-      "exec": "echo 'Do something...'",
-      "urgency": "Normal"
-    },
-    "example-action-script": {
-      "exec": "echo 'Do something actionable!'",
-      "urgency": "Normal",
-      "run-on": "action"
-    }
-  },
-  "notification-visibility": {
-    "example-name": {
-      "state": "muted",
-      "urgency": "Low",
-      "app-name": "Spotify"
-    }
-  },
   "widgets": [
     "dnd",
     "buttons-grid",
     "volume",
-    "backlight",
+    "slider",
     "inhibitors",
     "title",
     "notifications"
@@ -91,24 +73,21 @@
       "show-per-app-icon": true,
       "show-per-app": true
     },
-    "backlight": {
+    "slider": {
       "label": "󰃠",
-      "device": "intel_backlight",
-      "subsystem": "backlight",
-      "min": 5
+      "value": 50,
+      "min": 5,
+      "max": 100,
+      "cmd": "brightnessctl set {}%",
+      "update-cmd": "sh -c 'expr $(brightnessctl get) \\* 100 / $(brightnessctl max)'"
     },
     "buttons-grid": {
     "buttons-per-row": 4,
     "actions": [
         {
-          "label": "󰍁",
+          "label": "󰐥",
           "type": "command",
-          "command": "hyprlock"
-        },
-        {
-          "label": "󰗼",
-          "type": "command",
-          "command": "hyprctl dispatch exit"
+          "command": "systemctl poweroff"
         },
         {
           "label": "󰜉",
@@ -116,11 +95,15 @@
           "command": "systemctl reboot"
         },
         {
-          "label": "󰐥",
+          "label": "󰗼",
           "type": "command",
-          "command": "systemctl poweroff"
+          "command": "hyprctl dispatch exit"
         },
-
+        {
+          "label": "󰍁",
+          "type": "command",
+          "command": "hyprlock"
+        },
         {
           "label": "󰤥",
           "type": "toggle",
@@ -143,9 +126,8 @@
         },
         {
           "label": "",
-          "type": "toggle",
-          "command": "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then bash -c hyprpicker; else pkill -TERM hyprpicker; fi",
-          "update-command": "pgrep -x hypridle >/dev/null && echo true || echo false"
+          "type": "button",
+          "command": "hyprpicker -a"
         }
       ]
     }
