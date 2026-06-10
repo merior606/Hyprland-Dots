@@ -57,7 +57,7 @@
     },
 
     "custom/power": {
-	"format": "⏻",
+	    "format": "⏻",
         "on-click": "wlogout",
         "tooltip": true,
         "tooltip-format": "Left Click: Logout Menu",
@@ -242,7 +242,8 @@
         "orientation": "horizontal",
         "modules": [
             "custom/openbracket",
-            "custom/swaync",
+            // "custom/swaync",
+            "custom/wallpaper",
             "custom/keyboard",
             "custom/split",
             "clock",
@@ -268,6 +269,11 @@
         "format": "",
         "tooltip": false,
         "on-click": "~/.config/waybar/scripts/clipboard_menu.sh"
+    },
+    "custom/wallpaper": {
+        "format": "xx",
+        "tooltip": false,
+        "on-click": "kitty -e ~/.config/hypr/scripts/hyprwall-tui.sh"
     },
     "battery": {
         "states": {
@@ -325,7 +331,7 @@
         "tooltip": true,
         "tooltip-format": "{}",
     },
-
+    
 
     "group/network": {
         "orientation": "horizontal",

@@ -248,6 +248,7 @@
         "modules": [
             "custom/openbracket",
             // "custom/swaync",
+            "custom/wallpaper",
             "custom/keyboard",
             "custom/split",
             "clock",
@@ -276,7 +277,11 @@
         "signal": 10,  
         "on-click": "~/.config/waybar/scripts/timer.sh toggle" 
     },
-
+    "custom/wallpaper": {
+        "format": " ",
+        "tooltip": false,
+        "on-click": "kitty -e ~/.config/hypr/scripts/hyprwall-tui.sh"
+    },
     "custom/clipboard": {
         "format": "",
         "tooltip": false,
