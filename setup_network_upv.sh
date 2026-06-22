@@ -13,6 +13,7 @@
 if [ "$EUID" -ne 0 ]; then
   echo "Error: Por favor, ejecuta este script como root."
   echo "Ejemplo: sudo $0 <usuario_upv> <contraseña> <usuario_local_linux>"
+  echo "Ejemplo: sudo $0 mroljim pass123 $USER"
   exit 1
 fi
 
