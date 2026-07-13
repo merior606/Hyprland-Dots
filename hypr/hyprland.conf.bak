@@ -19,6 +19,7 @@
 
 # monitor = eDP-1, preferred, auto, 1.333333 # mylaptop
 monitor = DP-3, 1920x1080@144, 0x0, 1 # mypc
+# monitor = DP-3, 1920x1080@144, 0x0, 1, icc_profile:/home/mario/Hyprland-Dots/hypr/colors/BenQXL2411Z144Hz.icc # mypc
 
 # Esto es la sintaxis para version last git. Algún dia funcionará...
 # hl.monitor({
@@ -155,6 +156,7 @@ decoration {
 }
 
 # https://wiki.hypr.land/Configuring/Variables/#animations
+# https://github.com/HyDE-Project/HyDE/blob/master/Configs/.config/hypr/animations/fast.conf
 animations {
     enabled = yes, please :)
 
